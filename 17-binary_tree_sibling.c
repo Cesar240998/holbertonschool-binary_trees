@@ -11,10 +11,10 @@ binary_tree_t *binary_tree_sibling(binary_tree_t *node)
 	if (!node || !node->parent)
 		return (NULL);
 
-	tmp = malloc(sizeof(binary_tree_t));
+	/*tmp = malloc(sizeof(binary_tree_t));*/
+	/*if (!tmp)*/
+	/*  return (NULL);*/
 
-	if (!tmp)
-		return (NULL);
 	tmp = node->parent;
 
 	return (node == tmp->left ? tmp->right : tmp->left);
