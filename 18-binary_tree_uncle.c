@@ -7,14 +7,14 @@
  */
 binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 {
-        binary_tree_t *tmp = NULL;
+	binary_tree_t *tmp = NULL;
 
-        if (!node || !node->parent)
-                return (NULL);
-
-        tmp = node->parent;
-
-        return (binary_tree_sibling(tmp));
+	if (!node || !node->parent)
+		return (NULL);
+	
+	tmp = node->parent;
+	
+	return (binary_tree_sibling(tmp));
 }
 
 /**
