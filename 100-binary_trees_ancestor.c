@@ -10,7 +10,6 @@
 binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 				     const binary_tree_t *second)
 {
-	size_t i = 0, deph_first = 0, deph_second = 0, max = 0;
 	binary_tree_t *temp1, *temp2;
 
 	if (!first || !second)
@@ -19,34 +18,19 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	if (first == second)
 		return ((binary_tree_t *)first);
 
-	deph_first = binary_tree_depth(first);
-	deph_second = binary_tree_depth(second);
+	temp1 = first->parent;
+	temp2 = second->parent;
 
-	if (second->n == first->parent->n)
-		return ((binary_tree_t *)second);
-	if (first->n == second->parent->n)
-		return ((binary_tree_t *)first);
-
-	if (deph_first > deph_second)
+	if (temp1 == NULL || first == temp2 || (!temp1->parent && temp2))
 	{
-		max = deph_first;
-		temp1 = (binary_tree_t *)second;
-		temp2 = first->parent;
+		return (binary_trees_ancestor(first, temp2));
 	}
-	else
+	else if (temp2 == NULL || temp1 == second || (!temp2->parent && temp1))
 	{
-		max = deph_second;
-		temp1 = (binary_tree_t *)first;
-		temp2 = second->parent;
+		return (binary_trees_ancestor(temp1, second));
 	}
 
-	for (i = 0; i < max; i++)
-	{
-		if (temp1->n == temp2->n)
-			return (temp1);
-		temp2 = temp2->parent;
-	}
-	return (NULL);
+	return (binary_trees_ancestor(temp1, temp2));
 }
 /**
  * binary_tree_depth - measures the depth of a node in a binary tree
