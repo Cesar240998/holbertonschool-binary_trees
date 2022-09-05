@@ -36,7 +36,7 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	else
 	{
 		max = deph_second;
-		temp1 = (binary_tree_t *)first->parent;
+		temp1 = (binary_tree_t *)first;
 		temp2 = second->parent;
 	}
 
