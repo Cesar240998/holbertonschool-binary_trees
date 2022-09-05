@@ -13,6 +13,12 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	size_t i = 0, deph_first = 0, deph_second = 0, max = 0;
 	binary_tree_t *temp1, *temp2;
 
+	if (!first || !second)
+		return (NULL);
+
+	if (first == second)
+		return ((binary_tree_t *)first);
+
 	deph_first = binary_tree_depth(first);
 	deph_second = binary_tree_depth(second);
 
@@ -24,13 +30,13 @@ binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
 	if (deph_first > deph_second)
 	{
 		max = deph_first;
-		temp1 = second->parent;
+		temp1 = (binary_tree_t *)second;
 		temp2 = first->parent;
 	}
 	else
 	{
 		max = deph_second;
-		temp1 = first->parent;
+		temp1 = (binary_tree_t *)first->parent;
 		temp2 = second->parent;
 	}
 
